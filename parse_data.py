@@ -69,6 +69,7 @@ for filename1 in os.listdir(path_dir_data):
         if not os.path.exists(path_file_info):
             raise FileNotFoundError('Info file not found. Expected location: {}'.format(path_file_info))
         with open(path_file_info, 'r') as f:
+            # lines = f.readlines() # TODO
             lines = [line for line in f.readlines() if ':' in line]
             for line in lines:
                 attribute, value = [token.strip() for token in line.split(':', 1)]
@@ -138,7 +139,7 @@ for filename1 in os.listdir(path_dir_data):
 
 # Save json with all data organised
 with open(path_output_json, 'w') as f:
-    json.dump(contents, f)
+    json.dump({'contents': contents}, f)
 
 # Print completion message
 print('Done')
