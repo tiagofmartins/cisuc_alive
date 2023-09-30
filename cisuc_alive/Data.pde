@@ -1,16 +1,16 @@
 import java.util.*;
 
-enum ContentType {
+enum ContentCategory {
   PUBLICATION, NEWS, EVENT
 }
 
 class Content {
-  ContentType type;
+  ContentCategory category;
   StringDict properties = new StringDict();
   ContentImage[] images = null;
   
-  Content(ContentType type) {
-    this.type = type;
+  Content(ContentCategory category) {
+    this.category = category;
   }
 
   int getNumImages() {
@@ -43,6 +43,25 @@ class ContentImage {
   }
 }
 
+Content getRandomContent() {
+  return getRandomContent(null);
+}
+
+Content getRandomContent(ContentCategory category) {
+  ArrayList<Content> shuffledContents = new ArrayList<>(contents);
+  Collections.shuffle(shuffledContents);
+  if (category != null) {
+    for (Content c : shuffledContents) {
+      if (c.category == category) {
+        return c;
+      }
+    }
+    return null;
+  } else {
+    return shuffledContents.get(0);
+  }
+}
+
 ArrayList<Content> loadContents(Path pathInputDataDir) {
   String[] imageExtensions = {".png", ".jpg", ".jpeg"};
   ArrayList<Content> loadedContents = new ArrayList<Content>();
@@ -50,13 +69,13 @@ ArrayList<Content> loadContents(Path pathInputDataDir) {
   JSONArray contentsData = jsonData.getJSONArray("contents");
   for (int i = 0; i < contentsData.size(); i++) {
     JSONObject contentData = contentsData.getJSONObject(i);
-    ContentType category;
+    ContentCategory category;
     if (contentData.getString("category").equalsIgnoreCase("publication")) {
-      category = ContentType.PUBLICATION;
+      category = ContentCategory.PUBLICATION;
     } else if (contentData.getString("category").equalsIgnoreCase("news")) {
-      category = ContentType.NEWS;
+      category = ContentCategory.NEWS;
     } else if (contentData.getString("category").equalsIgnoreCase("event")) {
-      category = ContentType.EVENT;
+      category = ContentCategory.EVENT;
     } else {
       continue;
     }

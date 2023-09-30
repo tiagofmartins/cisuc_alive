@@ -65,7 +65,7 @@ for filename1 in os.listdir(path_dir_data):
             'num_images': 0
         }
         if content_subcategory != None:
-            curr_content[content_subcategory] = content_subcategory
+            curr_content['subcategory'] = content_subcategory
 
         # Get attributes
         path_file_info = os.path.join(dir_content, 'info.txt')

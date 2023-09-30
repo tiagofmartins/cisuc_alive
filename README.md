@@ -5,26 +5,26 @@
 ```
 ├─ data
 │  ├─ Events
-│  │  ├─ EventA          # Folder name doesn't matter
-│  │  │  ├─ info.txt     # This file is required
-│  │  │  ├─ images       # A folder with one or more images is optional
+│  │  ├─ EventA             # Folder name doesn't matter
+│  │  │  ├─ info.txt        # This file is required
+│  │  │  ├─ images          # A folder with one or more images is optional
 │  │  │  │  ├─ img1.jpg
 │  │  │  │  └─ img2.jpg
 │  │  └─ EventB
 │  │     └─ info.txt
 │  ├─ News
-│  │  └─ ...              # Same structure as /Events
-│  ├─ Pubs_Chapter
-│  │  ├─ PubA             # Folder name doesn't matter
-│  │  │  ├─ info.txt      # This file is required
-│  │  │  └─ foo.pdf       # A PDF file is required
+│  │  └─ ...                 # Same structure as /Events
+│  ├─ Pubs_Book_Chapter
+│  │  ├─ PubA                # Folder name doesn't matter
+│  │  │  ├─ info.txt         # This file is required
+│  │  │  └─ foo.pdf          # A PDF file is required
 │  │  └─ PubB
 │  │     ├─ info.txt
 │  │     └─ bar.pdf
-│  ├─ Pubs_Conference
-│  │  └─ ...              # Same structure as /Pubs_Chapter
-│  └─ Pubs_Journal
-│  │  └─ ...              # Same structure as /Pubs_Chapter
+│  ├─ Pubs_Conference_Paper
+│  │  └─ ...                 # Same structure as /Pubs_Chapter
+│  └─ Pubs_Journal_Paper
+│     └─ ...                 # Same structure as /Pubs_Chapter
 └─ ...
 ```
 
@@ -108,3 +108,10 @@ ALGO talks is a seminar series organized by the ALGorithms and Optimization Lab,
 #url
 https://www.cisuc.uc.pt/en/1st-lasi-workshop-on-smart-cities-energy-and-mobility
 ```
+
+## Dependencies
+
+The Python script `data_parser.py` requires the following packages installed:
+
+- `pdf2image`
+- `Pillow`
