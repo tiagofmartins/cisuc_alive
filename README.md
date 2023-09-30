@@ -106,5 +106,5 @@ On 12 March, Pedro Matias, PhD student in Theoretical Computer Science at Univer
 ALGO talks is a seminar series organized by the ALGorithms and Optimization Lab, Adaptive Computation Group, CISUC and University of Coimbra.
 
 #url
-[https://www.cisuc.uc.pt/en/1st-lasi-workshop-on-smart-cities-energy-and-mobility](https://www.cisuc.uc.pt/en/algo-talks-2)
+https://www.cisuc.uc.pt/en/1st-lasi-workshop-on-smart-cities-energy-and-mobility
 ```
