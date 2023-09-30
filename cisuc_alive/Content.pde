@@ -4,7 +4,6 @@ enum ContentType {
   PUBLICATION, NEWS, EVENT
 }
 
-
 class Content {
   ContentType type;
   StringDict properties = new StringDict();
