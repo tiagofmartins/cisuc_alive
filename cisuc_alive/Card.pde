@@ -1,27 +1,3 @@
-class VerticalCarousel {
-
-  float x, y, w, h;
-  ArrayList<Content> selected = new ArrayList<Content>();
-
-  VerticalCarousel(float x, float y, float w, float h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-  }
-
-  void update() {
-  }
-
-  void display() {
-    strokeWeight(1);
-    stroke(0, 255, 0);
-    line(x, y, x + w, y + h);
-    stroke(0, 0, 255);
-    line(x + w, y, x, y + h);
-  }
-}
-
 class ContentCard {
 
   Content content;

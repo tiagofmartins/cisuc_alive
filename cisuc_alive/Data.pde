@@ -7,39 +7,14 @@ enum ContentCategory {
 class Content {
   ContentCategory category;
   StringDict properties = new StringDict();
-  ContentImage[] images = null;
+  String[] pathsImages = null;
   
   Content(ContentCategory category) {
     this.category = category;
   }
 
   int getNumImages() {
-    return images != null ? images.length : 0;
-  }
-}
-
-class ContentImage {
-  String path;
-  PImage pimage = null;
-  
-  ContentImage(String path) {
-    this.path = path;
-  }
-  
-  void load() {
-    pimage = requestImage(this.path);
-  }
-  
-  void unload() {
-    pimage = null;
-  }
-  
-  boolean loaded() {
-    return pimage != null && pimage.width > 0;
-  }
-  
-  String getPath() {
-    return path;
+    return pathsImages != null ? pathsImages.length : 0;
   }
 }
 
@@ -99,11 +74,11 @@ ArrayList<Content> loadContents(Path pathInputDataDir) {
             }
           }
         }
-        content.images = new ContentImage[foundImageFiles.size()];
+        content.pathsImages = new String[foundImageFiles.size()];
         for (int k = 0; k < foundImageFiles.size(); k++) {
-          content.images[k] = new ContentImage(foundImageFiles.get(k).getPath());
+          content.pathsImages[k] = foundImageFiles.get(k).getPath();
         }
-        Arrays.sort(content.images, Comparator.comparing(ContentImage::getPath));
+        Arrays.sort(content.pathsImages);
       }
     }
     loadedContents.add(content);
