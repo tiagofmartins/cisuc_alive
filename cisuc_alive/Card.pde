@@ -10,7 +10,7 @@ class ContentCard {
   ContentCard(Content content, int cardWidth) {
     this.content = content;
     this.cardWidth = cardWidth;
-    this.cardHeight = this.cardWidth * 3; // This value is adjusted when the card is generated
+    this.cardHeight = this.cardWidth * 2; // This value is adjusted when the card is generated
     this.marginHor = this.cardWidth * 0.05;
     this.marginVer = marginHor * 1.25;
     generate();

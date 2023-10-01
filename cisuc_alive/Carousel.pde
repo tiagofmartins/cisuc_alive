@@ -17,13 +17,18 @@ class Carousel {
     // Load needed images and remove unnecessary ones
     for (int i = images.size() - 1; i >= 0; i--) {
       CarouselImg img = images.get(i);
-      if (img.y + img.h < yTopLimitToLoad) {
+      if (img.y + img.h < yTopLimitToLoad) { // If image is above top limit
         images.remove(i);
-      } else if (img.y < yBottomLimitToLoad && img.loaded() == false) {
-        img.load(); // Bug here
+      } else if (img.y < yBottomLimitToLoad) { // If image is above bottom limit
+        if (!img.loaded()) {
+          if (i == 0 || images.get(i - 1).loaded()) {
+            // Load this image only if it is on top or if the above image is loaded
+            img.load();
+          }
+        }
       }
     }
-    
+
     // Move images
     for (int i = 0; i < images.size(); i++) {
       CarouselImg img = images.get(i);
@@ -34,24 +39,33 @@ class Carousel {
         img.y = aboveImg.y + aboveImg.h + carouselImagesSpace;
       }
     }
-    
+
+    // Display images
     for (CarouselImg img : images) {
       img.display(x);
     }
-    
-    int loadedImages = 0;
-    for (CarouselImg img : images) {
-      if (img.loaded()) {
-        loadedImages++;
+
+    // Debug
+    if (debug) {
+      
+      // Draw bounds
+      noFill();
+      strokeWeight(1);
+      stroke(0);
+      rect(x, y, w, h);
+      line(x, y, x + w, y + h);
+
+      // Display number of images loaded
+      int imagesLoaded = 0;
+      for (CarouselImg img : images) {
+        if (img.loaded()) {
+          imagesLoaded++;
+        }
       }
+      fill(0);
+      textFont(fontDebug, fontDebug.getSize());
+      text(imagesLoaded + "/" + images.size() + " images loaded", x + 20, y + 20);      
     }
-    println(loadedImages);
-    
-    /*noFill();
-    strokeWeight(1);
-    stroke(255, 100, 100);
-    rect(x, y, w, h);
-    line(x, y, x + w, y + h);*/
   }
 
   void addContent(Content c) {
@@ -76,17 +90,15 @@ class CarouselImg {
   String path;
   PImage image = null;
   float y = 0;
-  float w = 0;
-  float h = 0;
+  float w, h;
   boolean loadRequested = false;
   boolean sizeCalculated = false;
-  CarouselImg imgAbove = null;
 
   CarouselImg(String path, float w) {
     this.path = path;
     this.w = w;
   }
-  
+
   void display(float x) {
     if (!loaded()) {
       return;
@@ -108,12 +120,6 @@ class CarouselImg {
       image = requestImage(path);
       loadRequested = true;
     }
-  }
-
-  void unload() {
-    image = null;
-    loadRequested = false;
-    sizeCalculated = false;
   }
 
   boolean loaded() {
