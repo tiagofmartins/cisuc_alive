@@ -1,0 +1,8 @@
+
+.DS_Store
+*.jpg
+*.png
+*.pdf
+*.txt
+*.jpeg
+data_parsed/data.json

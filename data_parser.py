@@ -19,9 +19,11 @@ if not os.path.exists(path_dir_data) or not os.path.isdir(path_dir_data):
 # Set folder for the output parsed data
 name_dir_data_parsed = 'data_parsed'
 path_dir_data_parsed = os.path.join(script_dir, name_dir_data_parsed)
-if os.path.exists(path_dir_data_parsed) and os.path.isdir(path_dir_data_parsed):
-    shutil.rmtree(path_dir_data_parsed)
-os.makedirs(path_dir_data_parsed)
+if os.path.exists(path_dir_data_parsed):
+    raise FileExistsError('Output parsed data folder should be removed first.')
+#if os.path.exists(path_dir_data_parsed) and os.path.isdir(path_dir_data_parsed):
+#    shutil.rmtree(path_dir_data_parsed)
+#os.makedirs(path_dir_data_parsed)
 
 # Set path to output json with all data organised
 path_output_json = os.path.join(path_dir_data_parsed, 'data.json')
